@@ -1,0 +1,127 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sand: var(--sand);
+  --color-clay: var(--clay);
+  --color-ink: var(--ink);
+  --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans: "Work Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Emerald Prestige palette */
+  --background: oklch(0.95 0.02 92);       /* #f5f0e0 warm cream */
+  --foreground: oklch(0.22 0.04 155);      /* deep emerald ink */
+  --card: oklch(0.93 0.025 90);            /* slightly darker cream */
+  --card-foreground: oklch(0.22 0.04 155);
+  --popover: oklch(0.95 0.02 92);
+  --popover-foreground: oklch(0.22 0.04 155);
+  --primary: oklch(0.52 0.10 162);         /* #0d7a5f emerald */
+  --primary-foreground: oklch(0.95 0.02 92);
+  --secondary: oklch(0.72 0.11 85);        /* #c9a84c gold */
+  --secondary-foreground: oklch(0.22 0.04 155);
+  --muted: oklch(0.90 0.03 90);
+  --muted-foreground: oklch(0.48 0.04 80);
+  --accent: oklch(0.72 0.11 85);
+  --accent-foreground: oklch(0.22 0.04 155);
+  --destructive: oklch(0.55 0.18 30);
+  --destructive-foreground: oklch(0.985 0.012 85);
+  --border: oklch(0.82 0.03 85);
+  --input: oklch(0.82 0.03 85);
+  --ring: oklch(0.52 0.10 162);
+
+  --sand: oklch(0.72 0.11 85);             /* gold accent */
+  --clay: oklch(0.52 0.10 162);            /* emerald accent */
+  --ink: oklch(0.22 0.04 155);             /* dark emerald text */
+
+  --gradient-warm: linear-gradient(135deg, oklch(0.95 0.02 92), oklch(0.88 0.04 88));
+  --gradient-sun: radial-gradient(circle at 30% 20%, oklch(0.72 0.11 85 / 0.25), transparent 60%);
+  --shadow-soft: 0 30px 80px -30px oklch(0.52 0.10 162 / 0.25);
+  --shadow-elegant: 0 1px 0 oklch(0.52 0.10 162 / 0.08), 0 20px 50px -20px oklch(0.52 0.10 162 / 0.22);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: 0.005em;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility text-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+@utility text-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+@utility bg-grain {
+  background-color: var(--background);
+  background-image:
+    var(--gradient-sun),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.45  0 0 0 0 0.33  0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@utility shadow-elegant {
+  box-shadow: var(--shadow-elegant);
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-rise {
+  animation: float-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
